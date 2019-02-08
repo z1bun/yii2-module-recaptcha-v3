@@ -1,20 +1,13 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: bahaaodeh
- * Date: 12/22/18
- * Time: 7:23 PM
- */
 
-namespace Baha2Odeh\RecaptchaV3;
-
+namespace kekaadrenalin\recaptcha3;
 
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\di\Instance;
 use yii\validators\Validator;
 
-class RecaptchaV3Validator extends Validator
+class ReCaptchaValidator extends Validator
 {
     /**
      * @var bool
@@ -24,9 +17,9 @@ class RecaptchaV3Validator extends Validator
 
     /**
      * Recaptcha component
-     * @var string|array|RecaptchaV3
+     * @var string|array|ReCaptcha
      */
-    public $component = 'recaptchaV3';
+    public $component = 'reCaptcha3';
 
 
     /**
@@ -36,9 +29,10 @@ class RecaptchaV3Validator extends Validator
     public $acceptance_score = null;
 
     /**
-     * @var RecaptchaV3
+     * @var ReCaptcha
      */
     private $_component = null;
+
     /**
      * @inheritdoc
      * @throws InvalidConfigException
@@ -46,14 +40,14 @@ class RecaptchaV3Validator extends Validator
     public function init()
     {
         parent::init();
-        $component = Instance::ensure($this->component, RecaptchaV3::class);
+        $component = Instance::ensure($this->component, ReCaptcha::class);
         if ($component == null) {
-            throw new InvalidConfigException(Yii::t('recaptchav3', 'component is required.'));
+            throw new InvalidConfigException('Component is required.');
         }
         $this->_component = $component;
 
         if ($this->message === null) {
-            $this->message = Yii::t('recaptchav3', 'The verification code is incorrect.');
+            $this->message = 'The verification code is incorrect.';
         }
     }
 
@@ -63,12 +57,14 @@ class RecaptchaV3Validator extends Validator
     protected function validateValue($value)
     {
         $result = $this->_component->validateValue($value);
-        if($result === false){
+        if ($result === false) {
             return [$this->message, []];
         }
-        if($this->acceptance_score !== null && $result < $this->acceptance_score){
+
+        if ($this->acceptance_score !== null && $result < $this->acceptance_score) {
             return [$this->message, []];
         }
+
         return null;
     }
 

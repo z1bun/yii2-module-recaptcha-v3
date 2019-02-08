@@ -1,21 +1,33 @@
 {
-    "name": "baha2odeh/yii2-recaptcha-v3",
-    "description": "Yii2 reCAPTCHA v3",
+    "name": "kekaadrenalin/yii2-module-recaptcha-v3",
+    "description": "This is reCAPTCHA v3 for Yii2.",
     "type": "yii2-extension",
-    "keywords": ["yii2","extension","recaptcha v3","captcha","recaptcha 3","Yii2 recaptcha","Yii2 recaptcha 3","Yii2 recaptcha v3"],
-    "license": "Apache-2.0",
+    "keywords": ["yii2","module","recaptcha v3","captcha","recaptcha 3","Yii2 recaptcha","Yii2 recaptcha 3","Yii2 recaptcha v3"],
+    "license": "BSD-3-Clause",
+    "support": {
+        "source": "https://github.com/kekaadrenalin/yii2-module-recaptcha-v3",
+        "issues": "https://github.com/kekaadrenalin/yii2-module-recaptcha-v3/issues"
+    },
     "authors": [
         {
-            "name": "Bahaa Odeh",
-            "email": "bw4@hotmail.it"
+            "name": "kekaadrenalin",
+            "email": ""
         }
     ],
+    "minimum-stability": "stable",
     "require": {
-        "yiisoft/yii2": "~2.0.0"
+        "ext-curl": "*",
+        "yiisoft/yii2": "~2.0.15"
     },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ],
     "autoload": {
         "psr-4": {
-            "Baha2Odeh\\RecaptchaV3\\": ""
+            "kekaadrenalin\\recaptcha3\\": "src"
         }
     }
 }
