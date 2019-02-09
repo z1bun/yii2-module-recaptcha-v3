@@ -2,6 +2,13 @@
 
 namespace kekaadrenalin\recaptcha3;
 
+use Yii;
+use yii\helpers\Json;
+
+/**
+ * Class ReCaptcha
+ * @package kekaadrenalin\recaptcha3
+ */
 class ReCaptcha extends \yii\base\Component
 {
     public $site_key = null;

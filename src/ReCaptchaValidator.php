@@ -7,6 +7,10 @@ use yii\base\InvalidConfigException;
 use yii\di\Instance;
 use yii\validators\Validator;
 
+/**
+ * Class ReCaptchaValidator
+ * @package kekaadrenalin\recaptcha3
+ */
 class ReCaptchaValidator extends Validator
 {
     /**

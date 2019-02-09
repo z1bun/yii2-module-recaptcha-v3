@@ -9,6 +9,10 @@ use yii\helpers\Html;
 use yii\web\View;
 use yii\widgets\InputWidget;
 
+/**
+ * Class ReCaptchaWidget
+ * @package kekaadrenalin\recaptcha3
+ */
 class ReCaptchaWidget extends InputWidget
 {
     /**
