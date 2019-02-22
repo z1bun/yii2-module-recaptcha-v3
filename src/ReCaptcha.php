@@ -55,7 +55,7 @@ class ReCaptcha extends \yii\base\Component
      */
     public function validateValue($value)
     {
-        if (defined('RECAPTCHA_OFF') && RECAPTCHA_OFF) {
+        if (YII_ENV_TEST) {
             return 1;
         }
 

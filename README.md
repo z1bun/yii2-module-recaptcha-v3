@@ -63,7 +63,7 @@ public function rules()
 For tests
 ---------
 
-Use key ```RECAPTCHA_OFF``` in ```index-test.php``` for disable recaptcha's validate:
+When use ```YII_ENV_TEST``` in ```index-test.php``` then disabled recaptcha's validate:
 ```php
-define('RECAPTCHA_OFF', true);
+defined('YII_ENV') or define('YII_ENV', 'test');
 ```
