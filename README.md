@@ -31,12 +31,12 @@ add this to your components main.php
 
 ```php
 'components' => [
-        ...
-        'reCaptcha3' => [
-            'class'      => 'kekaadrenalin\recaptcha3\ReCaptcha',
-            'site_key'   => 'site_key_###',
-            'secret_key' => 'secret_key_###',
-        ],
+    ...
+    'reCaptcha3' => [
+        'class'      => 'kekaadrenalin\recaptcha3\ReCaptcha',
+        'site_key'   => 'site_key_###',
+        'secret_key' => 'secret_key_###',
+    ],
 
 ```
 
@@ -57,7 +57,13 @@ public function rules()
 ```
 
 ```php
-   <?= $form->field($model, 'reCaptcha')->widget(\kekaadrenalin\recaptcha3\ReCaptchaWidget::class) ?>
+<?= $form->field($model, 'reCaptcha')->widget(\kekaadrenalin\recaptcha3\ReCaptchaWidget::class) ?>
 ```
 
+For tests
+---------
 
+Use key ```RECAPTCHA_OFF``` in ```index-test.php``` for disable recaptcha's validate:
+```php
+define('RECAPTCHA_OFF', true);
+```
