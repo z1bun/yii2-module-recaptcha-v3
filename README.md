@@ -1,6 +1,8 @@
+[![Total Downloads](https://img.shields.io/packagist/dt/kekaadrenalin/yii2-module-recaptcha-v3.svg?style=flat-square)](https://packagist.org/packages/kekaadrenalin/yii2-module-recaptcha-v3) 
+
 Yii2 reCAPTCHA v3
 =================
-Yii2 reCAPTCHA v3
+Adds [recaptcha-v3](https://developers.google.com/recaptcha/docs/v3) into yii2 project
 
 Installation
 ------------
