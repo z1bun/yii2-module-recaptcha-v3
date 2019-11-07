@@ -1,17 +1,21 @@
 {
-    "name": "kekaadrenalin/yii2-module-recaptcha-v3",
+    "name": "z1bun/yii2-module-recaptcha-v3",
     "description": "This is reCAPTCHA v3 for Yii2.",
     "type": "yii2-extension",
     "keywords": ["yii2","module","recaptcha v3","captcha","recaptcha 3","Yii2 recaptcha","Yii2 recaptcha 3","Yii2 recaptcha v3"],
     "license": "BSD-3-Clause",
     "support": {
-        "source": "https://github.com/kekaadrenalin/yii2-module-recaptcha-v3",
-        "issues": "https://github.com/kekaadrenalin/yii2-module-recaptcha-v3/issues"
+        "source": "https://github.com/z1bun/yii2-module-recaptcha-v3",
+        "issues": "https://github.com/z1bun/yii2-module-recaptcha-v3/issues"
     },
     "authors": [
         {
             "name": "kekaadrenalin",
             "email": "kekapor@outlook.com"
+        },
+        {
+            "name": "z1bun",
+            "email": "z1bun@konstantinov.xyz"
         }
     ],
     "minimum-stability": "stable",
@@ -27,7 +31,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "kekaadrenalin\\recaptcha3\\": "src"
+            "z1bun\\recaptcha3\\": "src"
         }
     }
 }

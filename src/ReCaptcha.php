@@ -1,21 +1,34 @@
 <?php
 
-namespace kekaadrenalin\recaptcha3;
+namespace z1bun\recaptcha3;
 
 use Yii;
+use yii\base\Component;
 use yii\helpers\Json;
 
 /**
  * Class ReCaptcha
- * @package kekaadrenalin\recaptcha3
+ * @package z1bun\recaptcha3
  */
-class ReCaptcha extends \yii\base\Component
+class ReCaptcha extends Component
 {
-    public $site_key = null;
+    /**
+     * @var string Recaptcha site key
+     * @see https://developers.google.com/recaptcha/docs/v3
+     */
+    public $siteKey;
 
-    public $secret_key = null;
+    /**
+     * @var string Recaptcha secret key
+     * @see https://developers.google.com/recaptcha/docs/verify
+     */
+    public $secretKey;
 
-    private $verify_endpoint = 'https://www.google.com/recaptcha/api/siteverify';
+    /**
+     * @var string Recaptcha verify action url
+     * @see https://developers.google.com/recaptcha/docs/verify
+     */
+    private $verifyEndpoint = 'https://www.google.com/recaptcha/api/siteverify';
 
     /**
      * @inheritdoc
@@ -24,25 +37,23 @@ class ReCaptcha extends \yii\base\Component
     {
         parent::init();
 
-        if (empty($this->site_key)) {
+        if (empty($this->siteKey)) {
             throw new \Exception('site key cant be null');
         }
 
-        if (empty($this->secret_key)) {
+        if (empty($this->secretKey)) {
             throw new \Exception('secret key cant be null');
         }
-
-        defined('RECAPTCHA_OFF') or define('RECAPTCHA_OFF', false);
     }
 
     /**
      * @param $view
-     *
+     * @throws \yii\base\InvalidConfigException
      */
     public function registerScript($view)
     {
-        /** @var View $view */
-        $view->registerJsFile('https://www.google.com/recaptcha/api.js?render=' . $this->site_key, [
+        /** @var yii\web\View $view */
+        $view->registerJsFile('https://www.google.com/recaptcha/api.js?render=' . $this->siteKey, [
             'position' => $view::POS_HEAD,
         ], 'recaptcha-v3-script');
     }
@@ -61,7 +72,7 @@ class ReCaptcha extends \yii\base\Component
 
         try {
             $response = $this->curl([
-                'secret'   => $this->secret_key,
+                'secret'   => $this->secretKey,
                 'response' => $value,
                 'remoteip' => Yii::$app->has('request') ? Yii::$app->request->userIP : null,
             ]);
@@ -85,7 +96,7 @@ class ReCaptcha extends \yii\base\Component
     protected function curl(array $params)
     {
         $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $this->verify_endpoint);
+        curl_setopt($curl, CURLOPT_URL, $this->verifyEndpoint);
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $params);
@@ -94,4 +105,5 @@ class ReCaptcha extends \yii\base\Component
 
         return Json::decode($curlData, true);
     }
+
 }

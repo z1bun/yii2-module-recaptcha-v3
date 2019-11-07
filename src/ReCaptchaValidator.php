@@ -1,6 +1,6 @@
 <?php
 
-namespace kekaadrenalin\recaptcha3;
+namespace z1bun\recaptcha3;
 
 use Yii;
 use yii\base\InvalidConfigException;
@@ -45,7 +45,7 @@ class ReCaptchaValidator extends Validator
     {
         parent::init();
         $component = Instance::ensure($this->component, ReCaptcha::class);
-        if ($component == null) {
+        if (null === $component) {
             throw new InvalidConfigException('Component is required.');
         }
         $this->_component = $component;
@@ -61,11 +61,11 @@ class ReCaptchaValidator extends Validator
     protected function validateValue($value)
     {
         $result = $this->_component->validateValue($value);
-        if ($result === false) {
+        if (false === $result) {
             return [$this->message, []];
         }
 
-        if ($this->acceptance_score !== null && $result < $this->acceptance_score) {
+        if (null !== $this->acceptance_score && $result < $this->acceptance_score) {
             return [$this->message, []];
         }
 
