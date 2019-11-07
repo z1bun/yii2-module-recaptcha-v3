@@ -98,6 +98,7 @@ JS;*/
                 [
                     'value' => '',
                     'data-cpt-action' => $this->actionName,
+                    'data-cpt-key' => $this->_component->siteKey,
                 ]
             )
         );
