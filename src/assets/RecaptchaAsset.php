@@ -10,7 +10,7 @@ class RecaptchaAsset extends AssetBundle
     /**
      * @var string
      */
-    public $sourcePath = '@vendor/z1bun/recaptcha3/assets';
+    public $sourcePath = '@vendor/z1bun/yii2-module-recaptcha-v3/assets';
 
     /**
      * @var array
