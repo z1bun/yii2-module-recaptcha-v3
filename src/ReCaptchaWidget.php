@@ -71,7 +71,7 @@ class ReCaptchaWidget extends InputWidget
                 $this->options,
                 [
                     'value' => '',
-                    'dat  a-cpt-action' => $this->actionName,
+                    'data-cpt-action' => $this->actionName,
                     'data-cpt-key' => $this->_component->siteKey,
                 ]
             )
