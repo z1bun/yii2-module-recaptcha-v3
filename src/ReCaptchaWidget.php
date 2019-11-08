@@ -57,35 +57,9 @@ class ReCaptchaWidget extends InputWidget
     public function run()
     {
 
-        RecaptchaAsset::register($this->view);
-        $this->_component->registerScript($this->getView());
+        $this->registerAssets();
         $this->field->template = "{input}\n{error}";
-        $formId = $this->field->form->id;
-        $inputId = Html::getInputId($this->model, $this->attribute);
 
-        /*$jsCode = <<<JS
-grecaptcha.ready(function () {
-  grecaptcha.execute('{$this->_component->siteKey}', {action: '{$this->actionName}'}).then(function (token) {
-    $('#{$inputId}').val(token);
-  });
-});
-$('#{$formId}').on('beforeSubmit', function () {
-  if (!$('#{$inputId}').val()) {
-    grecaptcha.ready(function () {
-      grecaptcha.execute('{$this->_component->siteKey}', {action: '{$this->actionName}'}).then(function (token) {
-        $('#{$inputId}').val(token);
-        $('#{$formId}').submit();
-      });
-    });
-    return false;
-  } else {
-    return true;
-  }
-});
-JS;*/
-
-//        $this->view->registerJs($jsCode, View::POS_READY);
-//
         if (isset($this->options['class']) && !empty($this->options['class'])) {
             $this->options['class'] .= ' ' . $this->inputClass;
         }
@@ -97,10 +71,41 @@ JS;*/
                 $this->options,
                 [
                     'value' => '',
-                    'data-cpt-action' => $this->actionName,
+                    'dat  a-cpt-action' => $this->actionName,
                     'data-cpt-key' => $this->_component->siteKey,
                 ]
             )
         );
     }
+
+    /**
+     * @throws \yii\base\InvalidConfigException
+     */
+    protected function registerAssets(): void
+    {
+        $this->_component->registerScript($this->view);
+        RecaptchaAsset::register($this->view);
+
+        $formId = $this->field->form->id;
+        $inputId = Html::getInputId($this->model, $this->attribute);
+
+        $jsCode = <<<JS
+            $('#{$formId}').on('beforeSubmit', function () {
+                if (!$('#{$inputId}').val()) {
+                    grecaptcha.ready(function () {
+                        grecaptcha.execute('{$this->_component->siteKey}', {action: '{$this->actionName}'}).then(function (token) {
+                            $('#{$inputId}').val(token);
+                            $('#{$formId}').submit();
+                        });
+                    });
+                    return false;
+                } 
+                
+                return true;
+            });
+JS;
+
+        $this->view->registerJs($jsCode, View::POS_READY);
+    }
+
 }
