@@ -36,8 +36,8 @@ add this to your components main.php
     ...
     'reCaptcha3' => [
         'class'      => 'z1bun\recaptcha3\ReCaptcha',
-         'siteKey' => env('recaptcha_site_key'),
-         'secretKey' => env('recaptcha_secret_key'),
+        'siteKey' => env('recaptcha_site_key'),
+        'secretKey' => env('recaptcha_secret_key'),
     ],
 
 ```
