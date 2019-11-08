@@ -12,13 +12,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist kekaadrenalin/yii2-module-recaptcha-v3 "*"
+php composer.phar require --prefer-dist z1bun/yii2-module-recaptcha-v3 "dev-master"
 ```
 
 or add
 
 ```
-"kekaadrenalin/yii2-module-recaptcha-v3": "*"
+"z1bun/yii2-module-recaptcha-v3": "dev-master"
 ```
 
 to the require section of your `composer.json` file.
@@ -35,9 +35,9 @@ add this to your components main.php
 'components' => [
     ...
     'reCaptcha3' => [
-        'class'      => 'kekaadrenalin\recaptcha3\ReCaptcha',
-        'site_key'   => 'site_key_###',
-        'secret_key' => 'secret_key_###',
+        'class'      => 'z1bun\recaptcha3\ReCaptcha',
+         'siteKey' => env('recaptcha_site_key'),
+         'secretKey' => env('recaptcha_secret_key'),
     ],
 
 ```
@@ -53,13 +53,13 @@ public function rules()
 {
  	return [
  		...
- 		 [['reCaptcha'], \kekaadrenalin\recaptcha3\ReCaptchaValidator::className(), 'acceptance_score' => 0]
+ 		 [['reCaptcha'], \z1bun\recaptcha3\ReCaptchaValidator::class, 'acceptance_score' => 0]
  	];
 }
 ```
 
 ```php
-<?= $form->field($model, 'reCaptcha')->widget(\kekaadrenalin\recaptcha3\ReCaptchaWidget::class) ?>
+<?= $form->field($model, 'reCaptcha')->widget(\z1bun\recaptcha3\ReCaptchaWidget::class) ?>
 ```
 
 For tests
