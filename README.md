@@ -1,4 +1,3 @@
-[![Total Downloads](https://img.shields.io/packagist/dt/z1bun/yii2-module-recaptcha-v3.svg?style=flat-square)](https://packagist.org/packages/z1bun/yii2-module-recaptcha-v3) 
 
 Yii2 reCAPTCHA v3
 =================
