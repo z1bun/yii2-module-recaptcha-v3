@@ -1,4 +1,4 @@
-[![Total Downloads](https://img.shields.io/packagist/dt/kekaadrenalin/yii2-module-recaptcha-v3.svg?style=flat-square)](https://packagist.org/packages/kekaadrenalin/yii2-module-recaptcha-v3) 
+[![Total Downloads](https://img.shields.io/packagist/dt/z1bun/yii2-module-recaptcha-v3.svg?style=flat-square)](https://packagist.org/packages/z1bun/yii2-module-recaptcha-v3) 
 
 Yii2 reCAPTCHA v3
 =================
@@ -69,3 +69,7 @@ When use ```YII_ENV_TEST``` in ```index-test.php``` then disabled recaptcha's va
 ```php
 defined('YII_ENV') or define('YII_ENV', 'test');
 ```
+TODO
+---------
+
+Option to hide the badge and display a link to recaptcha terms of use in the form
