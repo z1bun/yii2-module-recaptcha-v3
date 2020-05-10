@@ -58,7 +58,7 @@ class ReCaptchaWidget extends InputWidget
         $this->_component = $component;
 
         if ($this->nullFieldId) {
-            unset($this->options['id']);
+            $this->options['id'] = null;
         }
     }
 
