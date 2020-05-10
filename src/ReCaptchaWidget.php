@@ -26,6 +26,9 @@ class ReCaptchaWidget extends InputWidget
     /** @var string Recaptcha input class */
     public $inputClass = 'jsCpt';
 
+    /** @var bool Check if field id must be empty */
+    protected $nullFieldId = false;
+
     /**
      * @var string
      */
@@ -42,12 +45,21 @@ class ReCaptchaWidget extends InputWidget
      */
     public function init()
     {
+        /** FIX for id=null options */
+        if (array_key_exists('id', $this->options) && null === $this->options['id']) {
+            $this->nullFieldId = true;
+        }
+
         parent::init();
         $component = Instance::ensure($this->component, ReCaptcha::class);
         if (null === $component) {
             throw new InvalidConfigException('component is required.');
         }
         $this->_component = $component;
+
+        if ($this->nullFieldId) {
+            unset($this->options['id']);
+        }
     }
 
     /**
@@ -56,7 +68,6 @@ class ReCaptchaWidget extends InputWidget
      */
     public function run()
     {
-
         $this->registerAssets();
         $this->field->template = "{input}\n{error}";
 
